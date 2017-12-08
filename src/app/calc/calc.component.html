@@ -1,3 +1,14 @@
-<p>
-  calc works!
-</p>
+<div class="container-calc">
+    <h2 class="title">ФОТООБОИ{{title}}</h2>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="width" placeholder="Width from wall" value="">
+      <span matSuffix>см</span>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="height" (onContainerClick)="my()" placeholder="Height from wall" value="">
+        <span matSuffix>см</span>
+    </mat-form-field>
+
+    <button mat-raised-button class="calc-button" (click)="ngOnInit()">Buy</button>
+</div>
