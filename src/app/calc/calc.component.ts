@@ -12,10 +12,29 @@ export class CalcComponent implements OnInit {
   height : number;
   width : number;
 
+  Materials : Array<any>;
+
+  totalCost : number;
+
   constructor(public fb: FormBuilder) {
-    this.title = '"House in fire"'
-    this.height = null;
-    this.width = null;
+    this.title = '"ДОМ В ОГНЕ"'
+    this.height = 100;
+    this.width = 200;
+    this.Materials = [
+      {
+        name: 'Гладкая эконом' ,
+        cost : 190
+      },
+      {
+        name: 'Художественный холст' ,
+        cost : 300
+      },
+      {
+        name: 'Штукатурка' ,
+        cost : 250
+      }
+    ];
+    this.totalCost = 255;
 
     fb.control({
       
@@ -28,8 +47,20 @@ export class CalcComponent implements OnInit {
     this.width = this.width ? parseInt(this.width.toString()) : null ;
   }
 
-  public my() : void {
-    console.log('my func')
+  public makeOwnMaket() : void {
+    console.log('makeOwnMaket')
+  }
+
+  public materailSelected(material : Object ) : void {
+    console.log('materail selected:',material);
+  }
+
+  public moreAboutMaterial( material : Object ) : void {
+    console.log('more about material:',material);
+  }
+
+  public buyWallper() : void {
+    console.log('buy wallper:', this.totalCost);
   }
 
 }

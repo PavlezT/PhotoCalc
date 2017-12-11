@@ -1,14 +1,35 @@
 <div class="container-calc">
-    <h2 class="title">ФОТООБОИ{{title}}</h2>
-  
-    <mat-form-field class="example-full-width">
-      <input matInput [(ngModel)]="width" placeholder="Width from wall" value="">
-      <span matSuffix>см</span>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput [(ngModel)]="height" (onContainerClick)="my()" placeholder="Height from wall" value="">
-        <span matSuffix>см</span>
-    </mat-form-field>
-
-    <button mat-raised-button class="calc-button" (click)="ngOnInit()">Buy</button>
+    <h2 class="title">ФОТООБОИ {{title}}</h2>
+    <br>
+    <p class="placeholder">Длина стены от потолка</p>
+    <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="width" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <span class="input-group-addon" id="basic-addon2">см</span>
+    </div>
+    <br>
+    <p class="placeholder">Высота стены потолка</p>
+    <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="height" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <span class="input-group-addon" id="basic-addon2">см</span>
+    </div>
+    <br>
+    <button type="button" class="btn btn-light btn-block" (click)="makeOwnMaket()" >Самостоятельно сделать макет</button>
+    <br>
+    <h2 class="title">МАТЕРИАЛЫ</h2>
+    <div class="container-fluid">
+        <div class="row" *ngFor="let material of Materials">
+            <div class="col-sm-8">
+                <button type="button" class="btn btn-light btn-block material_button" (click)="materailSelected(material)" >{{material.name}}</button>
+            </div>
+            <div class="col-sm-4">
+                <p class="materials_cost">{{material.cost}}руб</p>
+                <button type="button" class="btn btn-info btn-sm" (click)="moreAboutMaterial(material)" >Подробней</button>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div style="display: flex;">
+        <span class="total_cost">{{totalCost}}руб</span>
+        <button type="button" class="btn btn-info buy_button" (click)="buyWallper()" >Купить</button>
+    </div>
 </div>

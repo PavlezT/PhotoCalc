@@ -13,9 +13,8 @@ import { MatSidenavModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   exports:[
@@ -39,14 +38,17 @@ export class MaterialDesign {}
     MaterialDesign,
     BrowserAnimationsModule,
     FormsModule,
-    MDBBootstrapModule.forRoot(),
+    NgbModule.forRoot(),
     RouterModule.forRoot(
       [
         { path: 'dashboard', component: CalcComponent }
       ]
     )
   ],
-  providers: [CalcParamsService],
+  providers: [
+    FormBuilder,
+    CalcParamsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
