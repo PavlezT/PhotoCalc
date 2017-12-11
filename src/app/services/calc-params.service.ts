@@ -1,8 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class CalcParamsService {
 
-  constructor() { }
+  photo : {
+    id : string,
+    cost : number,
+    url : string,
+    urlSafe : string,
+    name : string
+  };
+
+  photoUpdated = new EventEmitter();
+
+  constructor() {
+    this.photo = null;
+   }
 
 }

@@ -1,3 +1,9 @@
-<p>
-  photos-select works!
-</p>
+<div class="container-photo-select">
+    <div class="card" *ngFor="let photo of Photos" [style.background-image]="photo.urlSafe" (click)="selectPhoto(photo)" >
+        <div class="card-body">
+          <h3 class="card-text">{{photo.name}}</h3>
+          <h3 class="card-text">{{photo.cost}}руб</h3>
+          <button type="button" class="btn btn-info btn-sm photo_about-button" (click)="moreAboutPhoto(photo)" >Подробней</button>
+        </div>
+      </div>
+</div>

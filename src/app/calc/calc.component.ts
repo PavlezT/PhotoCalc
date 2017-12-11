@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CalcParamsService } from '../services/calc-params.service';
 
 @Component({
   selector: 'app-calc',
@@ -15,11 +16,10 @@ export class CalcComponent implements OnInit {
   Materials : Array<any>;
 
   totalCost : number;
+  selectedPhoto : any;
+  selectedMaterial : any;
 
-  constructor(public fb: FormBuilder) {
-    this.title = '"ДОМ В ОГНЕ"'
-    this.height = 100;
-    this.width = 200;
+  constructor(public fb: FormBuilder, @Inject(CalcParamsService) public service : CalcParamsService) {
     this.Materials = [
       {
         name : 'Гладкая эконом' ,
@@ -35,9 +35,24 @@ export class CalcComponent implements OnInit {
         name : 'Штукатурка' ,
         cost : 250,
         id : 'plast'
+      },
+      {
+        name : 'Штукатурка2 test' ,
+        cost : 250,
+        id : 'plast'
       }
     ];
-    this.totalCost = 255;
+
+    this.totalCost = 0;
+    this.selectedPhoto = {name :'',cost:0};
+    this.selectedMaterial = {cost:0}
+    this.height = 100;
+    this.width = 200;
+
+    this.service.photoUpdated.subscribe(photo => {
+      this.selectedPhoto = photo;
+      this.recountTotalCost();
+    })
 
     fb.control({
       
@@ -48,15 +63,22 @@ export class CalcComponent implements OnInit {
   ngOnInit() {
     this.height = this.height ? parseInt(this.height.toString()) : null;
     this.width = this.width ? parseInt(this.width.toString()) : null ;
+    
+    this.recountTotalCost();
+  }
+
+  public recountTotalCost() : void {
+    this.totalCost = this.selectedPhoto.cost + this.selectedMaterial.cost;
+  }
+
+  public materailSelected(material : any ) : boolean {
+    this.selectedMaterial = material;
+    this.recountTotalCost();
+    return true;
   }
 
   public makeOwnMaket() : void {
     console.log('makeOwnMaket')
-  }
-
-  public materailSelected(material : Object ) : boolean {
-    console.log('materail selected:',material);
-    return true;
   }
 
   public moreAboutMaterial( material : Object ) : void {
@@ -64,7 +86,18 @@ export class CalcComponent implements OnInit {
   }
 
   public buyWallper() : void {
-    console.log('buy wallper:', this.totalCost);
+    let buyObject : any = {};
+    buyObject.Photo = {
+      cost : this.selectedPhoto.cost,
+      id : this.selectedPhoto.id,
+      name : this.selectedPhoto.name,
+      url : this.selectedPhoto.url
+    };
+    buyObject.Material = this.selectedMaterial;
+    buyObject.width = `${this.width}cм`;
+    buyObject.height = `${this.height}cм`;
+
+    console.log('buy wallper:', buyObject);
   }
 
 }

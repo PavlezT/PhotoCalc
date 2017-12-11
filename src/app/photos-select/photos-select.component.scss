@@ -1,0 +1,47 @@
+.container-photo-select{
+    background-color: white;
+    height: 620px;
+    padding : 10px 20px 20px 20px;
+    overflow-y: auto;
+
+    .card{
+        margin-bottom : 20px;
+        background-position: center;
+        background-size: cover;
+        cursor: pointer;
+        // background-blend-mode: multiply;
+        .card-body{
+            background-color: rgba(1,1,1,0.5);
+            color : white;
+            text-align: center;
+
+            .photo_about-button{
+                border-radius: 20px;
+            }
+        }
+    }
+}
+
+.container-photo-select::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.container-photo-select::-webkit-scrollbar
+{
+	width: 3px;
+	background-color: #F5F5F5;
+}
+
+.container-photo-select::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.44, rgb(122,153,217)),
+									   color-stop(0.72, rgb(73,125,189)),
+									   color-stop(0.86, rgb(28,58,148)));
+}

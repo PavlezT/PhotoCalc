@@ -3,7 +3,9 @@
     background-color: white;
     height: 620px;
     // width: 90%;
-    padding : 20px;
+    padding : 10px 20px 20px 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .title{
@@ -13,7 +15,8 @@
 }
 
 .placeholder{
-    margin-bottom: 0.3rem;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .materials_cost{
@@ -40,13 +43,40 @@
 }
 
 .form-control:focus{
-    border-color:rgba(100,200,100,0.8) !important;
-    box-shadow : 0 0 0 0.2rem rgba(26, 247, 53, 0.25) !important;
+    border-color:#117a8b !important; //rgba(100,200,100,0.8)
+    box-shadow : 0 0 0 0.2rem rgba(23, 162, 184, 0.5) !important; //rgba(26, 247, 53, 0.25)
 }
 
 .container-fluid{
     padding-right: 0px;
     padding-left: 0px;
+    max-height: 188px;
+    overflow-y: auto;
+    overflow-x: hidden
+}
+
+.container-fluid::-webkit-scrollbar-track, .container-calc::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.container-fluid::-webkit-scrollbar, .container-calc::-webkit-scrollbar
+{
+	width: 3px;
+	background-color: #F5F5F5;
+}
+
+.container-fluid::-webkit-scrollbar-thumb, .container-calc::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.44, rgb(122,153,217)),
+									   color-stop(0.72, rgb(73,125,189)),
+									   color-stop(0.86, rgb(28,58,148)));
 }
 
 .row{
@@ -54,6 +84,11 @@
     div{
         padding-right: 0px;
     }
+}
+
+.btn-block{
+    margin-top: 10px;
+    margin-bottom : 10px;
 }
 
 .material_button{
