@@ -22,16 +22,19 @@ export class CalcComponent implements OnInit {
     this.width = 200;
     this.Materials = [
       {
-        name: 'Гладкая эконом' ,
-        cost : 190
+        name : 'Гладкая эконом' ,
+        cost : 190,
+        id : 'soft'
       },
       {
-        name: 'Художественный холст' ,
-        cost : 300
+        name : 'Художественный холст' ,
+        cost : 300,
+        id : 'canvas'
       },
       {
-        name: 'Штукатурка' ,
-        cost : 250
+        name : 'Штукатурка' ,
+        cost : 250,
+        id : 'plast'
       }
     ];
     this.totalCost = 255;
@@ -51,8 +54,9 @@ export class CalcComponent implements OnInit {
     console.log('makeOwnMaket')
   }
 
-  public materailSelected(material : Object ) : void {
+  public materailSelected(material : Object ) : boolean {
     console.log('materail selected:',material);
+    return true;
   }
 
   public moreAboutMaterial( material : Object ) : void {

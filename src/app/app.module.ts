@@ -7,6 +7,7 @@ import { CalcParamsService } from './services/calc-params.service';
 import { AppComponent } from './app.component';
 import { CalcComponent } from './calc/calc.component';
 import { PhotoLabelComponent } from './photo-label/photo-label.component';
+import { PhotosSelectComponent } from './photos-select/photos-select.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material';
@@ -14,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -31,7 +33,8 @@ export class MaterialDesign {}
   declarations: [
     AppComponent,
     CalcComponent,
-    PhotoLabelComponent
+    PhotoLabelComponent,
+    PhotosSelectComponent
   ],
   imports: [
     BrowserModule,

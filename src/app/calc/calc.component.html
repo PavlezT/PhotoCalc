@@ -20,6 +20,9 @@
         <div class="row" *ngFor="let material of Materials">
             <div class="col-sm-8">
                 <button type="button" class="btn btn-light btn-block material_button" (click)="materailSelected(material)" >{{material.name}}</button>
+                <!-- <label class="btn btn-light btn-block material_button" ngbButtonLabel>
+                    <input type="radio" ngbButton > {{material.name}}
+                </label> -->
             </div>
             <div class="col-sm-4">
                 <p class="materials_cost">{{material.cost}}руб</p>
