@@ -1,6 +1,64 @@
 .container-photo{
-    background: url('http://www.offthegridnews.com/wp-content/uploads/2017/01/fireplace-a-cozy-fireplace-warrenville.jpg');
-    height: 620px;
+    height: 780px;
     width: 100%;
-    padding:20px;
+    padding : 0px 0px 0px 0px;
+    background-color: white;
+    user-select: none;
+   .photo{
+        background-position: center;
+        background-size: cover;
+        height:80%;
+        position: relative;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+   }
+
+   .room_click{
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        background-color: rgba(200,200,200,0.3);
+        width: 40px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        span{
+            font-size: 40px;
+            color: white;
+            user-select: none;
+        }
+   }
+   .room_click:hover{
+        background-color: rgba(200,200,200,0.8);
+   }
+   .next{
+       right:0px;
+   }
+   .prev{
+       left:0px;
+   }
+
+   .hide_room{
+       position : absolute;
+       width : 100%;
+       height : 40px;
+       bottom : 0px;
+       background-color: rgba(200,200,200,0.3);
+       cursor: pointer;
+       text-align: center;
+    //    display: flex;
+    //    flex-direction: column;
+    //    justify-content: center;
+       span{
+           font-size: 22px;
+           color: white;
+           user-select: none;
+       } 
+   }
+   .hide_room:hover{
+        background-color: rgba(200,200,200,0.8);
+    }
 }

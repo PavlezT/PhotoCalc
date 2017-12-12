@@ -8,44 +8,84 @@ import { CalcParamsService } from '../services/calc-params.service';
   styleUrls: ['./calc.component.scss']
 })
 export class CalcComponent implements OnInit {
+  Materials : Array<any>;
+  Filters : Array<any>;
 
-  title : string;
   height : number;
   width : number;
-
-  Materials : Array<any>;
 
   totalCost : number;
   selectedPhoto : any;
   selectedMaterial : any;
+  selectedFilter : any;
 
   constructor(public fb: FormBuilder, @Inject(CalcParamsService) public service : CalcParamsService) {
+    this.Filters = [
+      {
+        name : 'Оригинал' ,
+        cost : 0
+      },
+      {
+        name : 'Негатив' ,
+        cost : 190,
+        color : 'white',
+        id : 'difference'
+      },
+      {
+        name : 'Монохромний' ,
+        cost : 300,
+        color : 'grey',
+        id : 'luminosity'
+      },
+      {
+        name : 'Сепия' ,
+        cost : 250,
+        color : 'rgb(200,150,50)',
+        id : 'luminosity'
+      },
+      {
+        name : 'Попарт' ,
+        cost : 452,
+        color : 'rgb(200,50,150)',
+        id : 'luminosity'
+      }
+    ];
+
     this.Materials = [
       {
-        name : 'Гладкая эконом' ,
+        name : 'Оригинал' ,
+        cost : 0
+      },
+      {
+        name : 'Негатив' ,
         cost : 190,
-        id : 'soft'
+        color : 'white',
+        id : 'difference'
       },
       {
-        name : 'Художественный холст' ,
+        name : 'Монохромний' ,
         cost : 300,
-        id : 'canvas'
+        color : 'grey',
+        id : 'luminosity'
       },
       {
-        name : 'Штукатурка' ,
+        name : 'Сепия' ,
         cost : 250,
-        id : 'plast'
+        color : 'rgb(200,150,50)',
+        id : 'luminosity'
       },
       {
-        name : 'Штукатурка2 test' ,
-        cost : 250,
-        id : 'plast'
+        name : 'Попарт' ,
+        cost : 452,
+        color : 'rgb(200,50,150)',
+        id : 'luminosity'
       }
     ];
 
     this.totalCost = 0;
     this.selectedPhoto = {name :'',cost:0};
     this.selectedMaterial = {cost:0}
+    this.selectedFilter = {cost:0}
     this.height = 100;
     this.width = 200;
 
@@ -68,21 +108,33 @@ export class CalcComponent implements OnInit {
   }
 
   public recountTotalCost() : void {
-    this.totalCost = this.selectedPhoto.cost + this.selectedMaterial.cost;
+    this.totalCost = this.selectedPhoto.cost + this.selectedMaterial.cost + this.selectedFilter.cost;
   }
 
   public materailSelected(material : any ) : boolean {
     this.selectedMaterial = material;
     this.recountTotalCost();
+    this.service.materialUpdated.emit(material);
     return true;
-  }
-
-  public makeOwnMaket() : void {
-    console.log('makeOwnMaket')
   }
 
   public moreAboutMaterial( material : Object ) : void {
     console.log('more about material:',material);
+  }
+
+  public filterSelected(filter : any ) : boolean {
+    this.selectedFilter = filter;
+    this.recountTotalCost();
+    this.service.filterUpdated.emit(filter);
+    return true;
+  }
+
+  public moreAboutFilter( filter : Object ) : void {
+    console.log('more about material:',filter);
+  }
+
+  public makeOwnMaket() : void {
+    console.log('makeOwnMaket');
   }
 
   public buyWallper() : void {
@@ -93,7 +145,10 @@ export class CalcComponent implements OnInit {
       name : this.selectedPhoto.name,
       url : this.selectedPhoto.url
     };
-    buyObject.Material = this.selectedMaterial;
+    buyObject.Material = {
+      name : this.selectedMaterial.name,
+      cost : this.selectedMaterial.cost
+    };
     buyObject.width = `${this.width}cм`;
     buyObject.height = `${this.height}cм`;
 

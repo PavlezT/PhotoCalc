@@ -16,7 +16,7 @@ export class PhotosSelectComponent implements OnInit {
       {
         id : 'first',
         cost : 2300,
-        url : 'http://www.rumford.com/images/1101tgfire.jpg',
+        url : 'https://homesteadandgarden.co.uk/wp-content/uploads/2015/12/Nature-Green-Garden-Road-Wide.jpg',
         name : '"Fire is house"'
       },
       {
@@ -28,19 +28,19 @@ export class PhotosSelectComponent implements OnInit {
       {
         id : 'third',
         cost : 2560,
-        url : 'http://www.offthegridnews.com/wp-content/uploads/2017/01/fireplace-a-cozy-fireplace-warrenville.jpg',
+        url : 'http://webneel.com/daily/sites/default/files/images/daily/10-2013/3-nature-photography-cherry-tree.preview.jpg',
         name : '"Fire is fireplace"'
       },
       {
         id : 'fourth',
         cost : 2560,
-        url : 'http://www.offthegridnews.com/wp-content/uploads/2017/01/fireplace-a-cozy-fireplace-warrenville.jpg',
+        url : 'https://scontent.fdnk1-1.fna.fbcdn.net/v/t1.0-1/p720x720/16684123_1714534411896141_7118653729282711876_n.jpg?oh=b9aeb379899ff3b56442e24b8b61586b&oe=5ABB1383',
         name : '"Fire is fireplace"'
       },
       {
         id : 'fifth',
         cost : 2560,
-        url : 'http://www.offthegridnews.com/wp-content/uploads/2017/01/fireplace-a-cozy-fireplace-warrenville.jpg',
+        url : 'http://proshots-2.s3.amazonaws.com/ebf012ea89bc1482e9d9505a1d190c4ef97ff6c3e666c1d6564eb98a9e4d7053/640x480.jpg',
         name : '"Fire is fireplace"'
       }
     ]

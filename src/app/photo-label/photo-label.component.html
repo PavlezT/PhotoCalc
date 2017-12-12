@@ -1,3 +1,15 @@
 <div class="container-photo">
-  privet
+  <div class="photo" [style.background-image]="currentPhoto.urlSafe" [style.background-color]="currentFilter.color" [style.background-blend-mode]="currentFilter.id" >
+      <!-- [style.background-color]="currentFilter.color" [style.background-blend-mode]="currentFilter.id" -->
+    <img *ngIf="currentRoom" [src]="currentRoom.url" />
+    <div class="room_click next" (click)="nextRoom()" >
+        <span class="material-icons">navigate_next</span>
+    </div>
+    <div class="room_click prev" (click)="prevRoom()" >
+        <span class="material-icons">navigate_before</span>
+    </div>
+    <div *ngIf="currentRoom" class="hide_room" (click)="hideRoom()" >
+        <span class="material-icons">Скрить</span>
+    </div>
+  </div>
 </div>

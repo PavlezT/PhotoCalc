@@ -1,5 +1,5 @@
 <div class="container-calc">
-    <h2 class="title">ФОТООБОИ {{title}}</h2>
+    <h2 class="title">ФОТООБОИ {{selectedPhoto.name}}</h2>
     <p class="placeholder">Длина стены от потолка</p>
     <div class="input-group">
         <input type="text" class="form-control" [(ngModel)]="width" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -10,21 +10,40 @@
         <input type="text" class="form-control" [(ngModel)]="height" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
         <span class="input-group-addon" id="basic-addon2">см</span>
     </div>
-    <button type="button" class="btn btn-light btn-block" (click)="makeOwnMaket()" >Самостоятельно сделать макет</button>
+    <button type="button" class="btn btn-light btn-block own_button" (click)="makeOwnMaket()" >Самостоятельно сделать макет</button>
+    <h2 class="title">ЭФФЕКТЫ</h2>
+    <div class="container-fluid">
+        <ng-container *ngFor="let filter of Filters" >
+            <div class="row">
+                <div class="col-sm-8">
+                    <button type="button" class="btn btn-light btn-block material_button" (click)="filterSelected(filter)" >{{filter.name}}</button>
+                    <!-- <label class="btn btn-light btn-block material_button" ngbButtonLabel>
+                        <input type="radio" ngbButton > {{material.name}}
+                    </label> -->
+                </div>
+                <div *ngIf="filter && filter.id" class="col-sm-4">
+                    <p class="materials_cost">{{filter.cost}}руб</p>
+                    <button type="button" class="btn btn-info btn-sm" (click)="moreAboutFilter(filter)" >Подробней</button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
     <h2 class="title">МАТЕРИАЛЫ</h2>
     <div class="container-fluid">
-        <div class="row" *ngFor="let material of Materials">
-            <div class="col-sm-8">
-                <button type="button" class="btn btn-light btn-block material_button" (click)="materailSelected(material)" >{{material.name}}</button>
-                <!-- <label class="btn btn-light btn-block material_button" ngbButtonLabel>
-                    <input type="radio" ngbButton > {{material.name}}
-                </label> -->
+        <ng-container *ngFor="let material of Materials" >
+            <div class="row">
+                <div class="col-sm-8">
+                    <button type="button" class="btn btn-light btn-block material_button" (click)="materailSelected(material)" >{{material.name}}</button>
+                    <!-- <label class="btn btn-light btn-block material_button" ngbButtonLabel>
+                        <input type="radio" ngbButton > {{material.name}}
+                    </label> -->
+                </div>
+                <div *ngIf="material && material.id" class="col-sm-4">
+                    <p class="materials_cost">{{material.cost}}руб</p>
+                    <button type="button" class="btn btn-info btn-sm" (click)="moreAboutMaterial(material)" >Подробней</button>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <p class="materials_cost">{{material.cost}}руб</p>
-                <button type="button" class="btn btn-info btn-sm" (click)="moreAboutMaterial(material)" >Подробней</button>
-            </div>
-        </div>
+        </ng-container>
     </div>
     <div class="line"></div>
     <div style="display: flex;">

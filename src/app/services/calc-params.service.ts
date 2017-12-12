@@ -12,7 +12,9 @@ export class CalcParamsService {
   };
 
   photoUpdated = new EventEmitter();
-
+  filterUpdated = new EventEmitter();
+  materialUpdated = new EventEmitter();
+  
   constructor() {
     this.photo = null;
    }
