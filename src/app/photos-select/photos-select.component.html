@@ -1,5 +1,5 @@
 <div class="container-photo-select">
-    <div class="card" *ngFor="let photo of Photos" [style.background-image]="photo.urlSafe" (click)="selectPhoto(photo)" >
+    <div class="card" *ngFor="let photo of Photos" [style.background-image]="photo.urlSafe" [ngClass]="photo == selectedPhoto ? 'selected' : ''" (click)="selectPhoto(photo)" >
         <div class="card-body">
           <h3 class="card-text">{{photo.name}}</h3>
           <h3 class="card-text">{{photo.cost}}руб</h3>

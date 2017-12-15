@@ -10,6 +10,7 @@ import { CalcParamsService } from '../services/calc-params.service';
 export class PhotosSelectComponent implements OnInit {
 
   Photos : Array<any>;
+  selectedPhoto : any;
 
   constructor(private sanitizer: DomSanitizer, @Inject(CalcParamsService) public service : CalcParamsService) {
     this.Photos = [
@@ -50,6 +51,8 @@ export class PhotosSelectComponent implements OnInit {
       return photo;
     })
 
+    this.selectedPhoto = this.Photos[0];
+
    }
 
   ngOnInit() {
@@ -57,6 +60,7 @@ export class PhotosSelectComponent implements OnInit {
   }
 
   public selectPhoto(photo : any ) : void {
+    this.selectedPhoto = photo;
     this.service.photoUpdated.emit(photo);
   }
 

@@ -1,7 +1,7 @@
 <div class="container-photo">
   <div class="photo" [style.background-image]="currentPhoto.urlSafe" [style.background-color]="currentFilter.color" [style.background-blend-mode]="currentFilter.id" >
-      <!-- [style.background-color]="currentFilter.color" [style.background-blend-mode]="currentFilter.id" -->
-    <img *ngIf="currentRoom" [src]="currentRoom.url" />
+    <img *ngIf="currentMaterial && currentMaterial.url" class="material_back"  [src]="currentMaterial.url"/>
+    <img *ngIf="currentRoom" [src]="currentRoom.url"/>
     <div class="room_click next" (click)="nextRoom()" >
         <span class="material-icons">navigate_next</span>
     </div>

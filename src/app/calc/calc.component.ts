@@ -57,35 +57,29 @@ export class CalcComponent implements OnInit {
         cost : 0
       },
       {
-        name : 'Негатив' ,
+        name : 'Plust' ,
         cost : 190,
-        color : 'white',
-        id : 'difference'
+        url : 'assets/textures/plust.jpg',
+        id : 'plust'
       },
       {
-        name : 'Монохромний' ,
-        cost : 300,
-        color : 'grey',
-        id : 'luminosity'
+        name : 'Rakuski' ,
+        cost : 230,
+        url : 'assets/textures/gravi.jpg',
+        id : 'rakuski'
       },
       {
-        name : 'Сепия' ,
+        name : 'Gravel' ,
         cost : 250,
-        color : 'rgb(200,150,50)',
-        id : 'luminosity'
-      },
-      {
-        name : 'Попарт' ,
-        cost : 452,
-        color : 'rgb(200,50,150)',
-        id : 'luminosity'
+        url : 'assets/textures/gravel.jpg',
+        id : 'gravel'
       }
     ];
 
     this.totalCost = 0;
     this.selectedPhoto = {name :'',cost:0};
-    this.selectedMaterial = {cost:0}
-    this.selectedFilter = {cost:0}
+    this.selectedMaterial = this.Materials[0];//{cost:0}
+    this.selectedFilter = this.Filters[0];//{cost:0}
     this.height = 100;
     this.width = 200;
 
@@ -148,6 +142,10 @@ export class CalcComponent implements OnInit {
     buyObject.Material = {
       name : this.selectedMaterial.name,
       cost : this.selectedMaterial.cost
+    };
+    buyObject.Filter = {
+      name : this.selectedFilter.name,
+      cost : this.selectedFilter.cost
     };
     buyObject.width = `${this.width}cм`;
     buyObject.height = `${this.height}cм`;

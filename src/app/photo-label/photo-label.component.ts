@@ -11,6 +11,7 @@ export class PhotoLabelComponent implements OnInit {
   currentPhoto : any;
   currentRoom : any;
   currentFilter : any;
+  currentMaterial : any;
 
   Rooms : Array<any>;
 
@@ -18,12 +19,16 @@ export class PhotoLabelComponent implements OnInit {
     this.currentPhoto = {urlSafe : ''};
     this.currentRoom = null;
     this.currentFilter = {id:'normal',color:'white'};
+    this.currentMaterial = {id: 0,name:'original',url:''};
 
     this.service.photoUpdated.subscribe(photo => {
       this.currentPhoto = photo;
     });
     this.service.filterUpdated.subscribe(filter => {
       this.currentFilter = filter;
+    })
+    this.service.materialUpdated.subscribe(material => {
+      this.currentMaterial = material;
     })
 
     this.Rooms = [

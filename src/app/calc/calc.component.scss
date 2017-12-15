@@ -3,7 +3,7 @@
     background-color: white;
     // height: 720px;
     // width: 90%;
-    padding : 0px 0px 0px 20px;
+    padding : 0px 0px 5px 20px;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -93,5 +93,9 @@
 
 .material_button{
     height: 100%;
+}
+
+.selected{
+    background-color: #17a2b8;
 }
 
