@@ -2,14 +2,41 @@
   <div class="photo" [style.background-image]="currentPhoto.urlSafe" [style.background-color]="currentFilter.color" [style.background-blend-mode]="currentFilter.id" >
     <img *ngIf="currentMaterial && currentMaterial.url" class="material_back"  [src]="currentMaterial.url"/>
     <img *ngIf="currentRoom" [src]="currentRoom.url"/>
-    <div class="room_click next" (click)="nextRoom()" >
+    <div *ngIf="currentRoom" class="room_click next" (click)="nextRoom()" >
         <span class="material-icons">navigate_next</span>
     </div>
-    <div class="room_click prev" (click)="prevRoom()" >
+    <div *ngIf="currentRoom" class="room_click prev" (click)="prevRoom()" >
         <span class="material-icons">navigate_before</span>
     </div>
     <div *ngIf="currentRoom" class="hide_room" (click)="hideRoom()" >
-        <span class="material-icons">Скрить</span>
+        <span class="material-icons">Скрыть</span>
+    </div>
+  </div>
+  <div class="filters" >
+    <h2 class="title">КОМНАТА</h2>
+    <div >
+        <ng-container *ngFor="let room of Rooms" >
+            <div class="effect" (click)="roomSelected(room)" >
+                <div [ngClass]="currentRoom && (room == currentRoom.url)? 'selected' : ''"  >
+                    <img *ngIf="room" [src]="room"/>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+  </div>
+  <div class="filters" >
+    <h2 class="title">ФИЛЬТР</h2>
+    <div >
+        <ng-container *ngFor="let filter of Filters" >
+            <div class="effect" (click)="filterSelected(filter)" >
+                <div [ngClass]="filter == currentFilter? 'selected' : ''" >
+                    <img [src]="filter.imageSrc" />
+                </div>
+                <span *ngIf="filter.id" class="materials_cost">{{filter.cost}}руб</span>
+                <br>
+                <span class="materials_cost">{{filter.name}}</span>
+            </div>
+        </ng-container>
     </div>
   </div>
 </div>

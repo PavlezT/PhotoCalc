@@ -20,58 +20,27 @@ export class CalcComponent implements OnInit {
   selectedFilter : any;
 
   constructor(public fb: FormBuilder, @Inject(CalcParamsService) public service : CalcParamsService) {
-    this.Filters = [
-      {
-        name : 'Оригинал' ,
-        cost : 0
-      },
-      {
-        name : 'Негатив' ,
-        cost : 190,
-        color : 'white',
-        id : 'difference'
-      },
-      {
-        name : 'Монохромний' ,
-        cost : 300,
-        color : 'grey',
-        id : 'luminosity'
-      },
-      {
-        name : 'Сепия' ,
-        cost : 250,
-        color : 'rgb(200,150,50)',
-        id : 'luminosity'
-      },
-      {
-        name : 'Попарт' ,
-        cost : 452,
-        color : 'rgb(200,50,150)',
-        id : 'luminosity'
-      }
-    ];
-
     this.Materials = [
       {
         name : 'Оригинал' ,
         cost : 0
       },
       {
-        name : 'Plust' ,
+        name : 'Штукатурка' ,
         cost : 190,
-        url : 'assets/textures/plust.jpg',
+        url : this.service.base_uri+'assets/textures/plust.jpg',
         id : 'plust'
       },
       {
-        name : 'Rakuski' ,
+        name : 'Ракушки' ,
         cost : 230,
-        url : 'assets/textures/gravi.jpg',
+        url : this.service.base_uri+'assets/textures/gravi.jpg',
         id : 'rakuski'
       },
       {
-        name : 'Gravel' ,
+        name : 'Гравий' ,
         cost : 250,
-        url : 'assets/textures/gravel.jpg',
+        url : this.service.base_uri+'assets/textures/gravel.jpg',
         id : 'gravel'
       }
     ];
@@ -79,12 +48,17 @@ export class CalcComponent implements OnInit {
     this.totalCost = 0;
     this.selectedPhoto = {name :'',cost:0};
     this.selectedMaterial = this.Materials[0];//{cost:0}
-    this.selectedFilter = this.Filters[0];//{cost:0}
+    this.selectedFilter = {cost:0 };
     this.height = 100;
     this.width = 200;
 
     this.service.photoUpdated.subscribe(photo => {
       this.selectedPhoto = photo;
+      this.recountTotalCost();
+    })
+
+    this.service.filterUpdated.subscribe(filter => {
+      this.selectedFilter = filter;
       this.recountTotalCost();
     })
 
@@ -116,17 +90,6 @@ export class CalcComponent implements OnInit {
     console.log('more about material:',material);
   }
 
-  public filterSelected(filter : any ) : boolean {
-    this.selectedFilter = filter;
-    this.recountTotalCost();
-    this.service.filterUpdated.emit(filter);
-    return true;
-  }
-
-  public moreAboutFilter( filter : Object ) : void {
-    console.log('more about material:',filter);
-  }
-
   public makeOwnMaket() : void {
     console.log('makeOwnMaket');
   }
@@ -135,9 +98,10 @@ export class CalcComponent implements OnInit {
     let buyObject : any = {};
     buyObject.Photo = {
       cost : this.selectedPhoto.cost,
-      id : this.selectedPhoto.id,
+      // id : this.selectedPhoto.id,
       name : this.selectedPhoto.name,
-      url : this.selectedPhoto.url
+      url : this.selectedPhoto.url,
+      link : this.selectedPhoto.link
     };
     buyObject.Material = {
       name : this.selectedMaterial.name,

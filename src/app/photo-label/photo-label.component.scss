@@ -1,5 +1,5 @@
 .container-photo{
-    height: 780px;
+    height: 760px;
     width: 100%;
     padding : 0px 0px 0px 0px;
     background-color: white;
@@ -7,7 +7,7 @@
    .photo{
         background-position: center;
         background-size: cover;
-        height:80%;
+        height:50%;
         position: relative;
         z-index: 2;
         img{
@@ -71,5 +71,30 @@
    }
    .hide_room:hover{
         background-color: rgba(200,200,200,0.8);
+    }
+
+    .filters{
+        margin-top:20px;
+        .title {
+            font-size: 16px;
+            padding: 0px;
+        }
+        .effect{
+            display: inline-block;
+            margin-right:10px;
+            text-align: center;
+            
+            div{
+                cursor: pointer;
+                border: 3px solid whitesmoke;
+                img{
+                    width:90px;
+                    height: 80px;
+                }
+            }
+        }
+        .selected, .effect > div:hover {
+            border: 3px solid #4dccbd !important;
+        }
     }
 }

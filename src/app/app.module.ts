@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule }   from '@angular/router';
+import { RouterModule, Routes }   from '@angular/router';
 
 import { CalcParamsService } from './services/calc-params.service';
 
@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   exports:[
@@ -44,13 +45,14 @@ export class MaterialDesign {}
     NgbModule.forRoot(),
     RouterModule.forRoot(
       [
-        { path: 'dashboard', component: CalcComponent }
+        { path: ':category/:item', component: AppComponent }
       ]
     )
   ],
   providers: [
     FormBuilder,
-    CalcParamsService
+    CalcParamsService,
+    // { provide: APP_BASE_HREF, useValue : 'http://printwalls.ru/' }
   ],
   bootstrap: [AppComponent]
 })

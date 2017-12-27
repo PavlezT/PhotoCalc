@@ -14,6 +14,7 @@ export class PhotoLabelComponent implements OnInit {
   currentMaterial : any;
 
   Rooms : Array<any>;
+  Filters : Array<any>;
 
   constructor(@Inject(CalcParamsService) public service : CalcParamsService) { 
     this.currentPhoto = {urlSafe : ''};
@@ -24,24 +25,58 @@ export class PhotoLabelComponent implements OnInit {
     this.service.photoUpdated.subscribe(photo => {
       this.currentPhoto = photo;
     });
-    this.service.filterUpdated.subscribe(filter => {
-      this.currentFilter = filter;
-    })
     this.service.materialUpdated.subscribe(material => {
       this.currentMaterial = material;
     })
 
+    this.Filters = [
+      {
+        name : 'Оригинал' ,
+        imageSrc : this.service.base_uri+'assets/effects/mirror.jpg',
+        cost : 0
+      },
+      {
+        name : 'Негатив' ,
+        cost : 190,
+        color : 'white',
+        imageSrc : this.service.base_uri+'assets/effects/negative.jpg',
+        id : 'difference'
+      },
+      {
+        name : 'Черно-белое' ,
+        cost : 300,
+        color : 'grey',
+        imageSrc : this.service.base_uri+'assets/effects/monochrome.jpg',
+        id : 'luminosity'
+      },
+      {
+        name : 'Сепия' ,
+        cost : 250,
+        color : 'rgb(200,150,50)',
+        imageSrc : this.service.base_uri+'assets/effects/sepia.jpg',
+        id : 'luminosity'
+      }
+    ];
+    // ,
+    //   {
+    //     name : 'Попарт' ,
+    //     cost : 452,
+    //     color : 'rgb(200,50,150)',
+    //     imageSrc : this.service.base_uri+'assets/effects/',
+    //     id : 'luminosity'
+    //   }
+
     this.Rooms = [
-        'assets/temp1.png',
-        'assets/temp2.png',
-        'assets/temp3.png',
-        'assets/temp4.png',
-        'assets/temp5.png'
+      this.service.base_uri+'assets/temp1.png',
+      this.service.base_uri+'assets/temp2.png',
+      this.service.base_uri+'assets/temp3.png',
+      this.service.base_uri+'assets/temp4.png'
     ]
   }
 
   ngOnInit() {
-     this.nextRoom();
+     //this.roomSelected(this.Rooms[0]);
+     this.filterSelected(this.Filters[0]);
   }
 
   public nextRoom() : void {
@@ -60,6 +95,27 @@ export class PhotoLabelComponent implements OnInit {
 
   public hideRoom() : void {
     this.currentRoom = null;
+  }
+
+  public roomSelected(room) : void {
+    if(!this.currentRoom)
+      this.currentRoom = {id:0, url : ''};
+    this.currentRoom.url = room;
+    this.Rooms.map((item,i)=>{
+      if(this.currentRoom.url == item)
+        this.currentRoom.id = i;
+    });
+  }
+
+  public moreAboutFilter( filter : Object ) : void {
+    console.log('more about material:',filter);
+  }
+
+  public filterSelected(filter : any ) : boolean {
+    this.currentFilter = filter;
+    this.service.filterUpdated.emit(filter);
+    //this.recountTotalCost();
+    return true;
   }
 
 }
