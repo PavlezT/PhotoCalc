@@ -97,4 +97,36 @@
             border: 3px solid #4dccbd !important;
         }
     }
+
+    button.simplefavorite-button_s {
+        position: absolute;
+        z-index: 1;
+        border: none;
+        right: 5px;
+        top: 5px;
+        font-size: 26px;
+        -moz-border-radius: 0 11px 0 0;
+        border-radius: 50%;
+        height: 42px;
+        width: 42px;
+        line-height: 44px;
+        background: #59ccbd;
+        color: #fff;
+        -webkit-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+        outline: none;
+    }
+    button.simplefavorite-button_s.active {
+        opacity: 1;
+        color: #fff!important;
+    }
+    button.simplefavorite-button_s i:before {
+        -webkit-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+    }
+    button.simplefavorite-button_s:hover i:before {
+        content: "\f004";
+    }
 }

@@ -18,6 +18,14 @@ export class PhotosSelectComponent implements OnInit {
 
     this.Photos = this.Photos.map(photo => {
       photo.cost = parseInt(photo.cost || '0');
+      try{
+        photo.likes_count = photo.likes_count && photo.likes_count.length > 0 ? parseInt(photo.likes_count.substring(photo.likes_count.indexOf('data-favorites-post-count-id="') +'data-favorites-post-count-id="'.length,photo.likes_count.indexOf(' data-siteid='))) : 0;
+        photo.like = (photo.like.substring(0,photo.like.indexOf('data-postid'))).indexOf('active') > -1 ? true : false;
+      }catch(e){
+        console.error('Invalid input Angular Context data: photos',e)
+        photo.likes_count = 0;
+        photo.like = false;
+      }
       photo.urlSafe = this.sanitizer.bypassSecurityTrustStyle(`url('${photo.url}')`);
       return photo;
     })

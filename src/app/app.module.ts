@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
@@ -40,6 +41,7 @@ export class MaterialDesign {}
   imports: [
     BrowserModule,
     MaterialDesign,
+    HttpModule,
     BrowserAnimationsModule,
     FormsModule,
     NgbModule.forRoot(),
@@ -52,7 +54,7 @@ export class MaterialDesign {}
   providers: [
     FormBuilder,
     CalcParamsService,
-    // { provide: APP_BASE_HREF, useValue : 'http://printwalls.ru/' }
+    { provide: APP_BASE_HREF, useValue : 'http://printwalls.ru/' }
   ],
   bootstrap: [AppComponent]
 })

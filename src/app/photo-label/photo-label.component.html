@@ -11,6 +11,9 @@
     <div *ngIf="currentRoom" class="hide_room" (click)="hideRoom()" >
         <span class="material-icons">Скрыть</span>
     </div>
+    <button class="simplefavorite-button_s" [ngClass]="currentPhoto.like? 'active' : 'inactive'" (click)="likePhoto(currentPhoto)">
+        <i class="fa" [ngClass]="currentPhoto.like? 'fa-heart' : 'fa-heart-o'"></i>
+    </button>
   </div>
   <div class="filters" >
     <h2 class="title">КОМНАТА</h2>

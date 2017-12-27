@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { CalcParamsService } from '../services/calc-params.service';
+import { Http, RequestOptions , Headers } from '@angular/http';
 
 @Component({
   selector: 'app-photo-label',
@@ -16,7 +17,7 @@ export class PhotoLabelComponent implements OnInit {
   Rooms : Array<any>;
   Filters : Array<any>;
 
-  constructor(@Inject(CalcParamsService) public service : CalcParamsService) { 
+  constructor(@Inject(CalcParamsService) public service : CalcParamsService, public http : Http) { 
     this.currentPhoto = {urlSafe : ''};
     this.currentRoom = null;
     this.currentFilter = {id:'normal',color:'white'};
@@ -116,6 +117,41 @@ export class PhotoLabelComponent implements OnInit {
     this.service.filterUpdated.emit(filter);
     //this.recountTotalCost();
     return true;
+  }
+
+  public likePhoto(photo) : void {
+    let url = `http://printwalls.ru/wp-admin/admin-ajax.php`;
+    let formData: FormData = new FormData(); 
+
+    photo.like = photo.like ? !photo.like : true;
+    let temp = {
+      action: 'favorites_favorite',
+      nonce: 'c2aaaa712e',//c2aaaa712e
+      postid: photo.id,
+      siteid: this.service.params['blog_id'],
+      status: photo.like? 'active' : 'inactive',//active->liked
+      logged_in: this.service.params['user_id'] && this.service.params['user_id'] != 0 ? 1 : 0,
+      user_id: this.service.params['user_id'] || 0
+    };
+
+    Object.keys(temp).map(key=>{
+      formData.append(key,temp[key]);
+    })
+    // formData.append('action', temp.action); 
+    // formData.append('nonce', temp.nonce); 
+    // formData.append('postid', temp.postid); 
+    // formData.append('siteid', temp.siteid); 
+    // formData.append('status', temp.status); 
+    // formData.append('logged_in', temp.logged_in.toString()); 
+    // formData.append('user_id', temp.user_id); 
+    
+    this.http.post(url,formData).toPromise()
+      .then(res=>{
+        console.log('liked status:',photo.like? 'active' : 'inactive');
+      })
+      .catch(err=>{
+        console.error('not liked!')
+      })
   }
 
 }

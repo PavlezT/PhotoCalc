@@ -12,24 +12,10 @@ export class AppComponent implements OnInit{
   title = 'app';
 
   constructor(private route: ActivatedRoute,@Inject(CalcParamsService) public service : CalcParamsService){
-    this.service.params = {};
-    let params = window.Context.params;
+    this.service.params = window.Context.params;
     console.log("Angular Context:",window.Context)
-    // switch(params['category']){
-    //   case 'fotooboi':
-    //     this.service.params.category = 'ФОТООБОИ';
-    //     break;
-    //   case "freski":
-    //     this.service.params.category = 'ФРЕСКИ';
-    //     break;
-    //   case 'module':
-    //     this.service.params.category = 'КАРТИНЫ';
-    //     break;
-    //   default:
-    //     this.service.params.category = 'ФОТООБОИ';
-    // }
-    this.service.params.category = params['category'];
-    this.service.params.item = params['item'];
+    // this.service.params.category = params['category'];
+    // this.service.params.item = params['item'];
   }
 
   ngOnInit() {

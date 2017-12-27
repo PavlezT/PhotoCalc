@@ -25,8 +25,8 @@ export class CalcParamsService {
       category : '',
       item : ''
     }
-    this.base_uri = '';
-    // this.base_uri = '/../wp-content/themes/fotooboi/angular/';
+    // this.base_uri = '';
+    this.base_uri = '/../wp-content/themes/fotooboi/angular/';
    }
 
 }
